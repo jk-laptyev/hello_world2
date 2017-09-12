@@ -4,12 +4,14 @@
 #include <linux/slab.h>
 #include <asm/bug.h>
 
+#include "inc/hello1.h"
+
 MODULE_LICENSE("GPL");
 
 static uint count=1;
 module_param(count, uint, S_IRUGO);
 
-extern int print_hello(void);
+//extern int print_hello(void);
 static int print_goodbye(void);
 
 static int __init hello_init(void) {
@@ -39,6 +41,9 @@ static void __exit hello_exit(void) {
     u8 *uPtr;
     print_goodbye();
     uPtr = (u8*)__kmalloc(64, GFP_KERNEL);
+    if (count == 3) {
+	*uPtr = 0x90;
+    }
     printk(KERN_INFO "Hello world caller quit.\n");
 }
 

@@ -1,6 +1,9 @@
 #include <linux/module.h>	/* Needed by all modules */
 #include <linux/kernel.h>	/* Needed for KERN_INFO */
 //#include <linux/printk.h>
+
+#include "inc/hello1.h"
+
 MODULE_LICENSE("GPL");
 
 static int __init hello_init(void)
@@ -14,7 +17,7 @@ static void __exit hello_exit(void)
     printk(KERN_INFO "Hello world printer quit.\n");
 }
 
-static int print_hello(void) {
+int print_hello(void) {
     printk(KERN_EMERG "Hello world!\n");
     return 0;
 }
